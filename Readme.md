@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг»
 
 * Студент: [Alexey Slyusarenko](https://up.htmlacademy.ru/javascript/22/user/1401569).
-* Наставник: `Неизвестно`.
+* Наставник: [Дмитрий (sench) Железцов](https://htmlacademy.ru/profile/sench).
 
 ---
 

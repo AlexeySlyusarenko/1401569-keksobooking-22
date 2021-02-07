@@ -30,13 +30,12 @@ const getRandomArray = (array) => {
 }
 
 const createMock = () => {
-  return {
+  const mock = {
     author: {
       avatar: `img/avatars/user0${getRandom(1, 8)}.png`,
     },
     offer: {
       title: titles[getRandom(1, titles.length - 1)],
-      address: `${location.x}, ${location.y}`,
       price: 1 / Math.pow(Math.random(), 1 / Math.random()),
       type: TYPES[getRandom(0, TYPES.length - 1)],
       rooms: getRandom(0, 1 / Math.pow(Math.random(), 1 / Math.random())),
@@ -52,6 +51,10 @@ const createMock = () => {
       y: getRandom(139.70000, 139.80000, 5),
     },
   };
+
+  mock.offer.address = `${mock.location.x}, ${mock.location.y}`;
+  
+  return mock;
 }
 
 for (let i = 0; i < NUMBER_MOCK; i++) {

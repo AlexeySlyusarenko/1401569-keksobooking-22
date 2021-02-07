@@ -57,6 +57,14 @@ const createMock = () => {
   return mock;
 }
 
-for (let i = 0; i < NUMBER_MOCK; i++) {
-  createMock();
+const generateMocks = (mock, number) => {
+  const mocks = [];
+  
+  for (let i = 0; i < number; i++) {
+    mocks.push(mock());
+  }
+
+  return mocks;
 }
+
+generateMocks(createMock, NUMBER_MOCK);

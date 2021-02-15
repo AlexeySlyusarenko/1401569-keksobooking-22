@@ -1,73 +1,9 @@
-const LOCATION_X_START = 35.65000;
-const LOCATION_X_END = 35.70000;
-const LOCATION_Y_START = 139.70000;
-const LOCATION_Y_END = 139.80000;
-const NUMBER_MOCK = 10;
-const TITLES = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet varius magna, non porta ligula feugiat eget. Fusce tristique felis at fermentum pharetra. Aliquam id orci ut lectus varius viverra. Nullam nunc ex, convallis sed finibus eget, sollicitudin eget ante. Phasellus eros mauris, condimentum sed nibh vitae, sodales efficitur ipsum. Sed blandit, eros vel aliquam faucibus, purus ex euismod diam, eu luctus nunc ante ut dui. Sed sed nisi sed augue convallis suscipit in sed felis. Aliquam erat volutpat. Nunc fermentum tortor ac porta dapibus. In rutrum ac purus sit amet tempus.';
-const DESCRIPTIONS = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet varius magna, non porta ligula feugiat eget. Fusce tristique felis at fermentum pharetra. Aliquam id orci ut lectus varius viverra. Nullam nunc ex, convallis sed finibus eget, sollicitudin eget ante. Phasellus eros mauris, condimentum sed nibh vitae, sodales efficitur ipsum. Sed blandit, eros vel aliquam faucibus, purus ex euismod diam, eu luctus nunc ante ut dui. Sed sed nisi sed augue convallis suscipit in sed felis. Aliquam erat volutpat. Nunc fermentum tortor ac porta dapibus. In rutrum ac purus sit amet tempus.';
-const TYPES = ['palace', 'flat', 'house', 'bungalow'];
-const TIMES = ['12:00', '13:00', '14:00'];
-const FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
-const PHOTOS = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
-const titles = TITLES.split('. ');
-const descriptions = DESCRIPTIONS.split('. ');
+import {
+  NUMBER_MOCK
+} from './const.js';
 
-const getRandom = (min = 0, max = min + 1, round = 0) => {
-  min = min >= 0 ? min : 0;
+import {
+  generateMocks
+} from './mocks.js';
 
-  if (max < 0) {
-    throw new Error('Аргументы функции должны быть больше 0');
-  }
-  if (max === min) {
-    return min.toFixed(round);
-  }
-  if (max - min < 1 / Math.pow(10, round)) {
-    throw new Error('Не достаточная точность при данном диапозоне значений "от" и "до"');
-  }
-  
-  return + (Math.random() * (max - min) + min).toFixed(round);
-}
-
-const getRandomArray = (array) => {
-  return array.filter(() => getRandom(0, 1));
-}
-
-const createMock = () => {
-  const mock = {
-    author: {
-      avatar: `img/avatars/user0${getRandom(1, 8)}.png`,
-    },
-    offer: {
-      title: titles[getRandom(1, titles.length - 1)],
-      price: 1 / Math.pow(Math.random(), 1 / Math.random()),
-      type: TYPES[getRandom(0, TYPES.length - 1)],
-      rooms: getRandom(0, 1 / Math.pow(Math.random(), 1 / Math.random())),
-      guests: getRandom(0, 1 / Math.pow(Math.random(), 1 / Math.random())),
-      checkin: TIMES[getRandom(0, TIMES.length - 1)],
-      checkout: TIMES[getRandom(0, TIMES.length - 1)],
-      features: getRandomArray(FEATURES),
-      description: descriptions[getRandom(1, titles.length - 1)],
-      photos: getRandomArray(PHOTOS),
-    },
-    location: {
-      x: getRandom(LOCATION_X_START, LOCATION_X_END, 5),
-      y: getRandom(LOCATION_Y_START, LOCATION_Y_END, 5),
-    },
-  };
-
-  mock.offer.address = `${mock.location.x}, ${mock.location.y}`;
-  
-  return mock;
-}
-
-const generateMocks = (mock, number) => {
-  const mocks = [];
-  
-  for (let i = 0; i < number; i++) {
-    mocks.push(mock());
-  }
-
-  return mocks;
-}
-
-generateMocks(createMock, NUMBER_MOCK);
+generateMocks(NUMBER_MOCK);

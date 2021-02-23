@@ -6,4 +6,12 @@ import {
   generateMocks
 } from './mocks.js';
 
-generateMocks(NUMBER_MOCK);
+import {
+  createCardElement
+} from './card.js'
+
+const mocks = generateMocks(NUMBER_MOCK);
+
+const mapCanvasElement = document.querySelector('#map-canvas');
+
+mapCanvasElement.appendChild(createCardElement(mocks[0]));

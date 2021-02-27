@@ -1,4 +1,7 @@
-import {Type} from './const.js';
+import {
+  Type,
+  TypePrice
+} from './const.js';
 
 const formElement = document.querySelector('.ad-form');
 const formTypeElement = formElement.querySelector('#type');
@@ -23,16 +26,16 @@ const setFormHandlers = () => {
   formTypeElement.addEventListener('change', (evt) => {
     switch (evt.target.value) {
       case Type.BUNGALOW:
-        setMinPrice(formPriceElement, 0);
+        setMinPrice(formPriceElement, TypePrice.BUNGALOW);
         break;
       case Type.FLAT:
-        setMinPrice(formPriceElement, 1000);
+        setMinPrice(formPriceElement, TypePrice.FLAT);
         break;
       case Type.HOUSE:
-        setMinPrice(formPriceElement, 5000);
+        setMinPrice(formPriceElement, TypePrice.HOUSE);
         break;
       case Type.PALACE:
-        setMinPrice(formPriceElement, 10000);
+        setMinPrice(formPriceElement, TypePrice.PALACE);
         break;
     }
   });

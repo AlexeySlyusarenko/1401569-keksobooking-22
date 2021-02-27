@@ -18,6 +18,13 @@ const Type = {
   BUNGALOW: 'bungalow',
 }
 
+const TypePrice = {
+  PALACE: 10000, 
+  FLAT: 1000,
+  HOUSE: 5000,
+  BUNGALOW: 0,
+}
+
 export {
   NUMBER_MOCK,
   LOCATION_X_START,
@@ -30,5 +37,6 @@ export {
   TIMES,
   FEATURES,
   PHOTOS,
-  Type
+  Type,
+  TypePrice
 }

@@ -1,17 +1,12 @@
-import {
-  NUMBER_MOCK
-} from './const.js';
-
-import {
-  generateMocks
-} from './mocks.js';
-
-import {
-  createCardElement
-} from './card.js'
+import { NUMBER_MOCK } from './const.js';
+import { generateMocks } from './mocks.js';
+import { createCardElement } from './card.js'
+import { setFormHandlers } from './form.js'
 
 const mocks = generateMocks(NUMBER_MOCK);
 
 const mapCanvasElement = document.querySelector('#map-canvas');
 
 mapCanvasElement.appendChild(createCardElement(mocks[0]));
+
+setFormHandlers();

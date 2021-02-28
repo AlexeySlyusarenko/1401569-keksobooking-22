@@ -1,12 +1,29 @@
 import { NUMBER_MOCK } from './const.js';
 import { generateMocks } from './mocks.js';
 import { createCardElement } from './card.js'
-import { setFormHandlers } from './form.js'
+import {
+  setAdFormHandlers,
+  disableAdForm
+} from './ad-form.js';
+
+import {
+  disableMapFilter
+} from './map-filter.js';
+
+import {
+  createMap,
+  createMarker
+} from './map.js';
 
 const mocks = generateMocks(NUMBER_MOCK);
 
-const mapCanvasElement = document.querySelector('#map-canvas');
+disableAdForm();
+setAdFormHandlers();
 
-mapCanvasElement.appendChild(createCardElement(mocks[0]));
+disableMapFilter();
 
-setFormHandlers();
+createMap();
+
+mocks.forEach((value) => {
+  createMarker(value.location, createCardElement(value));
+});

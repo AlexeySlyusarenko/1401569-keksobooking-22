@@ -25,6 +25,16 @@ const TypePrice = {
   BUNGALOW: 0,
 }
 
+const BeginCoord = {
+  BEGINLAT: 35.65283,
+  BEGINLNG: 139.83948,
+}
+
+const MainPinIconSize = {
+  WIDTH: 36,
+  HEIGHT: 36,
+}
+
 export {
   NUMBER_MOCK,
   LOCATION_X_START,
@@ -38,5 +48,7 @@ export {
   FEATURES,
   PHOTOS,
   Type,
-  TypePrice
+  TypePrice,
+  BeginCoord,
+  MainPinIconSize
 }

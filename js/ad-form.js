@@ -3,11 +3,17 @@ import {
   TypePrice
 } from './const.js';
 
-const formElement = document.querySelector('.ad-form');
-const formTypeElement = formElement.querySelector('#type');
-const formPriceElement = formElement.querySelector('#price');
-const formTimeinElement = formElement.querySelector('#timein');
-const formTimeoutElement = formElement.querySelector('#timeout');
+import {
+  disableForm,
+  enableForm
+} from './utils-form.js'
+
+const adFormElement = document.querySelector('.ad-form');
+const formTypeElement = adFormElement.querySelector('#type');
+const formPriceElement = adFormElement.querySelector('#price');
+const formTimeinElement = adFormElement.querySelector('#timein');
+const formTimeoutElement = adFormElement.querySelector('#timeout');
+const formAddressElement = adFormElement.querySelector('#address');
 
 const setMinPrice = (element, price) => {
   element.placeholder = price;
@@ -22,7 +28,7 @@ const changeTimeoutHandler = (evt) => {
   formTimeinElement.value = evt.target.value;
 }
 
-const setFormHandlers = () => {
+const setAdFormHandlers = () => {
   formTypeElement.addEventListener('change', (evt) => {
     switch (evt.target.value) {
       case Type.BUNGALOW:
@@ -42,8 +48,27 @@ const setFormHandlers = () => {
 
   formTimeinElement.addEventListener('change', changeTimeinHandler);
   formTimeoutElement.addEventListener('change', changeTimeoutHandler);
+
+  formAddressElement.addEventListener('keydown', (evt) => {
+    evt.preventDefault();
+  })
+}
+
+const disableAdForm = () => {
+  disableForm(adFormElement, 'fieldset');
+};
+
+const enableAdForm = () => {
+  enableForm(adFormElement, 'fieldset');
+};
+
+const setValueAddressInput = (value) => {
+  formAddressElement.value = value;
 }
 
 export {
-  setFormHandlers
+  setAdFormHandlers,
+  disableAdForm,
+  enableAdForm,
+  setValueAddressInput
 };

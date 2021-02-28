@@ -25,7 +25,7 @@ const TypePrice = {
   BUNGALOW: 0,
 }
 
-const BeginCoord = {
+const DefaultCoord = {
   BEGINLAT: 35.65283,
   BEGINLNG: 139.83948,
 }
@@ -49,6 +49,6 @@ export {
   PHOTOS,
   Type,
   TypePrice,
-  BeginCoord,
+  DefaultCoord,
   MainPinIconSize
 }

@@ -1,5 +1,5 @@
 import {
-  BeginCoord,
+  DefaultCoord,
   MainPinIconSize
 } from './const.js';
 
@@ -22,8 +22,8 @@ const createMap = () => {
       enableAdForm();
     })
     .setView({
-      lat: BeginCoord.BEGINLAT,
-      lng: BeginCoord.BEGINLNG,
+      lat: DefaultCoord.BEGINLAT,
+      lng: DefaultCoord.BEGINLNG,
     }, 10);
 
   L.tileLayer(
@@ -34,14 +34,14 @@ const createMap = () => {
   ).addTo(map);
 
   const mainPinIcon = L.icon({
-    iconUrl: '/img/main-pin.svg',
+    iconUrl: 'img/main-pin.svg',
     iconSize: [MainPinIconSize.WIDTH, MainPinIconSize.HEIGHT],
     iconAnchor: [MainPinIconSize.WIDTH / 2, MainPinIconSize.HEIGHT],
   });
 
   const marker = L.marker({
-    lat: BeginCoord.BEGINLAT,
-    lng: BeginCoord.BEGINLNG,
+    lat: DefaultCoord.BEGINLAT,
+    lng: DefaultCoord.BEGINLNG,
   },
   {
     icon: mainPinIcon,
@@ -50,7 +50,7 @@ const createMap = () => {
   );
 
   marker.addTo(map);
-  setValueAddressInput(`${BeginCoord.BEGINLAT}, ${BeginCoord.BEGINLNG}`);
+  setValueAddressInput(`${DefaultCoord.BEGINLAT}, ${DefaultCoord.BEGINLNG}`);
   marker.on('moveend', (evt) => {
     setValueAddressInput(`${evt.target.getLatLng().lat.toFixed(5)}, ${evt.target.getLatLng().lng.toFixed(5)}`);
   });
@@ -58,7 +58,7 @@ const createMap = () => {
 
 const createMarker = (location, cardElement) => {
   const pinIcon = L.icon({
-    iconUrl: '/img/pin.svg',
+    iconUrl: 'img/pin.svg',
     iconSize: [MainPinIconSize.WIDTH, MainPinIconSize.HEIGHT],
     iconAnchor: [MainPinIconSize.WIDTH / 2, MainPinIconSize.HEIGHT],
     popupAnchor: [0, - MainPinIconSize.HEIGHT / 2],

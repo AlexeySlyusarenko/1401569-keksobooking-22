@@ -16,24 +16,43 @@ const Type = {
   FLAT: 'flat',
   HOUSE: 'house',
   BUNGALOW: 'bungalow',
-}
+};
 
 const TypePrice = {
   PALACE: 10000, 
   FLAT: 1000,
   HOUSE: 5000,
   BUNGALOW: 0,
-}
+};
 
 const DefaultCoord = {
   BEGINLAT: 35.65283,
   BEGINLNG: 139.83948,
-}
+};
 
 const MainPinIconSize = {
   WIDTH: 36,
   HEIGHT: 36,
-}
+};
+
+const Form = {
+  MIN_NAME_LENGTH: 30,
+  MAX_NAME_LENGTH: 100,
+};
+
+const NumberRoom = {
+  ONE: 1,
+  DOUBLE: 2,
+  THREE: 3,
+  ONEHUNDRED: 100,
+};
+
+const CapacityRoom = {
+  ONE: [1],
+  DOUBLE: [1, 2],
+  THREE: [1, 2, 3],
+  ONEHUNDRED: [0],
+};
 
 export {
   NUMBER_MOCK,
@@ -50,5 +69,8 @@ export {
   Type,
   TypePrice,
   DefaultCoord,
-  MainPinIconSize
+  MainPinIconSize,
+  Form,
+  NumberRoom,
+  CapacityRoom
 }

@@ -2,14 +2,37 @@ import {
   Type,
   TypePrice,
   NumberRoom,
-  CapacityRoom
-  // Form
+  CapacityRoom,
+  DefaultForm
 } from './const.js';
+
+import {
+  sendData
+} from './net.js';
 
 import {
   disableForm,
   enableForm
-} from './utils-form.js'
+} from './utils-form.js';
+
+import {
+  showSuccessPopup,
+  showFaultSendPopup
+} from './popup.js';
+
+import {
+  getCards
+} from './data.js';
+
+import {
+  createMarkers,
+  removeMarkers,
+  setDefaultPositionMainPin
+} from './map.js';
+
+import {
+  resetFilter
+} from './map-filter.js';
 
 const adFormElement = document.querySelector('.ad-form');
 const formTypeElement = adFormElement.querySelector('#type');
@@ -21,6 +44,8 @@ const formTitleElement = adFormElement.querySelector('#title');
 const formRoomNumberElement = adFormElement.querySelector('#room_number');
 const formCapacityElement = adFormElement.querySelector('#capacity');
 const formCapacityOptionElements = formCapacityElement.querySelectorAll('option');
+const formFeatureElements = adFormElement.querySelectorAll('.feature__checkbox');
+const formResetElement = adFormElement.querySelector('.ad-form__reset');
 
 const setMinPrice = (element, price) => {
   element.placeholder = price;
@@ -88,6 +113,30 @@ const chooseCapacityOption = (element) => {
   }
 }
 
+const disableAdForm = () => {
+  disableForm(adFormElement, 'fieldset');
+};
+
+const enableAdForm = () => {
+  enableForm(adFormElement, 'fieldset');
+};
+
+const setValueAddressInput = (value) => {
+  formAddressElement.value = value;
+}
+
+const resetForm = () => {
+  formTitleElement.value = DefaultForm.TITLE;
+  formTypeElement.value = Type.FLAT;
+  formPriceElement.value = DefaultForm.PRICE;
+  chooseMinPrice(formTypeElement.value);
+  formTimeinElement.value = DefaultForm.TIME_IN;
+  formTimeoutElement.value = DefaultForm.TIME_OUT;
+  formRoomNumberElement.value = DefaultForm.ROOMS;
+  chooseCapacityOption(formRoomNumberElement);
+  formFeatureElements.forEach((element) => element.checked = false);
+};
+
 const setAdFormHandlers = () => {
   formTypeElement.addEventListener('change', (evt) => {
     chooseMinPrice(evt.target.value);
@@ -95,10 +144,6 @@ const setAdFormHandlers = () => {
 
   formTimeinElement.addEventListener('change', changeTimeinHandler);
   formTimeoutElement.addEventListener('change', changeTimeoutHandler);
-
-  formAddressElement.addEventListener('keydown', (evt) => {
-    evt.preventDefault();
-  });
 
   formTitleElement.addEventListener('invalid', (evt) => {
     const validity = evt.target.validity;
@@ -114,16 +159,6 @@ const setAdFormHandlers = () => {
     }
   });
   formTitleElement.addEventListener('input', (evt) => {
-    // const valueLength = evt.target.value.length;
-
-    // if (valueLength < Form.MIN_NAME_LENGTH) {
-    //   evt.target.setCustomValidity(`Ещё ${(Form.MIN_NAME_LENGTH - valueLength)} симв.`);
-    // } else if (valueLength > Form.MAX_NAME_LENGTH) {
-    //   evt.target.setCustomValidity(`Удалите лишние ${(valueLength - Form.MAX_NAME_LENGTH)} симв.`);
-    // } else {
-    //   evt.target.setCustomValidity('');
-    // }
-  
     evt.target.reportValidity();
   });
 
@@ -147,25 +182,33 @@ const setAdFormHandlers = () => {
   formRoomNumberElement.addEventListener('change', (evt) => {
     chooseCapacityOption(evt.target);
   });
-}
 
-const disableAdForm = () => {
-  disableForm(adFormElement, 'fieldset');
+  adFormElement.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    sendData(new FormData(evt.target), showSuccessPopup, showFaultSendPopup);
+  });
+
+  formResetElement.addEventListener('click', (evt) => {
+    evt.preventDefault();
+    resetForm();
+    resetFilter();
+    removeMarkers();
+    createMarkers(getCards());
+    setDefaultPositionMainPin();
+  });
 };
 
-const enableAdForm = () => {
-  enableForm(adFormElement, 'fieldset');
-};
-
-const setValueAddressInput = (value) => {
-  formAddressElement.value = value;
+const initForm = () => {
+  disableAdForm();
+  setAdFormHandlers();
+  resetForm();
 }
-
-chooseMinPrice(formTypeElement.value);
 
 export {
   setAdFormHandlers,
   disableAdForm,
   enableAdForm,
-  setValueAddressInput
+  setValueAddressInput,
+  resetForm,
+  initForm
 };

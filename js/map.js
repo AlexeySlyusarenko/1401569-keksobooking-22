@@ -12,8 +12,14 @@ import {
   setValueAddressInput
 } from './ad-form.js';
 
+import {
+  createCardElement
+} from './card.js';
+
 const L = window['L'];
 const map = L.map('map-canvas');
+let mainPin;
+let pins = [];
 
 const createMap = () => {
   map
@@ -22,9 +28,9 @@ const createMap = () => {
       enableAdForm();
     })
     .setView({
-      lat: DefaultCoord.BEGINLAT,
-      lng: DefaultCoord.BEGINLNG,
-    }, 10);
+      lat: DefaultCoord.LAT,
+      lng: DefaultCoord.LNG,
+    }, 9);
 
   L.tileLayer(
     'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -33,15 +39,19 @@ const createMap = () => {
     },
   ).addTo(map);
 
+  createMainMarker();
+};
+
+const createMainMarker = () => {
   const mainPinIcon = L.icon({
     iconUrl: 'img/main-pin.svg',
     iconSize: [MainPinIconSize.WIDTH, MainPinIconSize.HEIGHT],
     iconAnchor: [MainPinIconSize.WIDTH / 2, MainPinIconSize.HEIGHT],
   });
 
-  const marker = L.marker({
-    lat: DefaultCoord.BEGINLAT,
-    lng: DefaultCoord.BEGINLNG,
+  mainPin = L.marker({
+    lat: DefaultCoord.LAT,
+    lng: DefaultCoord.LNG,
   },
   {
     icon: mainPinIcon,
@@ -49,14 +59,19 @@ const createMap = () => {
   },
   );
 
-  marker.addTo(map);
-  setValueAddressInput(`${DefaultCoord.BEGINLAT}, ${DefaultCoord.BEGINLNG}`);
-  marker.on('moveend', (evt) => {
+  mainPin.addTo(map);
+  setValueAddressInput(`${DefaultCoord.LAT}, ${DefaultCoord.LNG}`);
+  mainPin.on('move', (evt) => {
     setValueAddressInput(`${evt.target.getLatLng().lat.toFixed(5)}, ${evt.target.getLatLng().lng.toFixed(5)}`);
   });
 };
 
-const createMarker = (location, cardElement) => {
+const setDefaultPositionMainPin = () => {
+  mainPin.setLatLng(L.latLng(DefaultCoord.LAT, DefaultCoord.LNG));
+  setValueAddressInput(`${DefaultCoord.LAT}, ${DefaultCoord.LNG}`);
+};
+
+const createMarker = (dataCard) => {
   const pinIcon = L.icon({
     iconUrl: 'img/pin.svg',
     iconSize: [MainPinIconSize.WIDTH, MainPinIconSize.HEIGHT],
@@ -64,23 +79,42 @@ const createMarker = (location, cardElement) => {
     popupAnchor: [0, - MainPinIconSize.HEIGHT / 2],
   });
 
-  const markerPin = L.marker({
-    lat: location.x,
-    lng: location.y,
+  const pin = L.marker({
+    lat: dataCard.location.lat,
+    lng: dataCard.location.lng,
   },
   {
     icon: pinIcon,
   },
   );
 
-  markerPin
+  pin
     .addTo(map)
     .bindPopup(
-      cardElement,
+      createCardElement(dataCard),
     );
-}
+
+  pins.push(pin);
+};
+
+const createMarkers = (dataCards) => {
+  dataCards.forEach((value) => {
+    createMarker(value);
+  });
+};
+
+
+const removeMarkers = () => {
+  pins.forEach((element) => {
+    element.remove();
+  });
+  pins = [];
+};
 
 export {
   createMap,
-  createMarker
+  createMarker,
+  createMarkers,
+  removeMarkers,
+  setDefaultPositionMainPin
 };

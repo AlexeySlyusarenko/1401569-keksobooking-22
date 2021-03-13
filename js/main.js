@@ -1,29 +1,46 @@
-import { NUMBER_MOCK } from './const.js';
-import { generateMocks } from './mocks.js';
-import { createCardElement } from './card.js'
 import {
-  setAdFormHandlers,
-  disableAdForm
+  initForm
 } from './ad-form.js';
 
 import {
-  disableMapFilter
+  initFilter
 } from './map-filter.js';
 
 import {
   createMap,
-  createMarker
+  createMarkers
 } from './map.js';
 
-const mocks = generateMocks(NUMBER_MOCK);
+import {
+  getData
+} from './net.js';
 
-disableAdForm();
-setAdFormHandlers();
+import {
+  showFaultLoadPopup
+} from './popup.js';
 
-disableMapFilter();
+import {
+  setCards
+} from './data.js';
+
+initForm();
+initFilter();
 
 createMap();
 
-mocks.forEach((value) => {
-  createMarker(value.location, createCardElement(value));
+getData((cards) => {
+  createMarkers(cards);
+  setCards(cards);
+}, showFaultLoadPopup);
+
+document.addEventListener('keydown', (evt) => {
+  const mainElement = document.querySelector('main');
+  if(evt.key === ('Escape' || 'ESC')) {
+    const popupElement = mainElement.querySelector('.success') || mainElement.querySelector('.error');
+    
+    if(popupElement) {
+      evt.preventDefault();
+      popupElement.remove();
+    }
+  }
 });

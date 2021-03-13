@@ -20,6 +20,20 @@ import {
   showFaultSendPopup
 } from './popup.js';
 
+import {
+  getCards
+} from './data.js';
+
+import {
+  createMarkers,
+  removeMarkers,
+  setDefaultPositionMainPin
+} from './map.js';
+
+import {
+  resetFilter
+} from './map-filter.js';
+
 const adFormElement = document.querySelector('.ad-form');
 const formTypeElement = adFormElement.querySelector('#type');
 const formPriceElement = adFormElement.querySelector('#price');
@@ -177,6 +191,10 @@ const setAdFormHandlers = () => {
   formResetElement.addEventListener('click', (evt) => {
     evt.preventDefault();
     resetForm();
+    resetFilter();
+    removeMarkers();
+    createMarkers(getCards());
+    setDefaultPositionMainPin();
   });
 };
 

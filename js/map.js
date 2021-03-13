@@ -17,7 +17,9 @@ import {
 } from './card.js';
 
 const L = window['L'];
-const map = L.map('map-canvas');
+const map = L.map('map-canvas', {
+  scrollWheelZoom: false,
+});
 let mainPin;
 let pins = [];
 

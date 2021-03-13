@@ -47,9 +47,9 @@ const clickFaultLoadButtonHandler = (evt) => {
   evt.target.parentElement.remove();
 };
 
-const clickFaultSendButtonHandler = () => {
+// const clickFaultSendButtonHandler = () => {
 
-}
+// }
 
 const showSuccessPopup = () => {
   const popupElement = createPopup('success', Message.SUCCESS_SEND_FORM);
@@ -91,7 +91,7 @@ const showFaultSendPopup = () => {
 
   mapElement.appendChild(popupElement);
 
-  popupElement.addEventListener('click', clickFaultSendButtonHandler);
+  // popupElement.addEventListener('click', clickFaultSendButtonHandler);
   popupElement.addEventListener('click', clickPopupHandler, true);
 };
 

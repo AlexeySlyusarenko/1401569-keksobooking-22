@@ -1,4 +1,16 @@
-const Type = {
+const NUMBER_SHOW_PIN = 10;
+
+const TYPE_ANY = 'any';
+
+const FieldFormFilter = {
+  TYPE: 'type',
+  PRICE: 'price',
+  ROOMS: 'rooms',
+  GUESTS: 'guests',
+  FEATURES: 'features',
+};
+
+const TypeHousing = {
   ANY: 'any',
   PALACE: 'palace', 
   FLAT: 'flat',
@@ -56,7 +68,10 @@ const DefaultForm = {
 }
 
 export {
-  Type,
+  NUMBER_SHOW_PIN,
+  TYPE_ANY,
+  FieldFormFilter,
+  TypeHousing,
   TypePrice,
   DefaultCoord,
   MainPinIconSize,

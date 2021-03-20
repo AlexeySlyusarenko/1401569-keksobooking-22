@@ -34,8 +34,8 @@ const enableMapFilter = () => {
 const resetFilter = () => {
   filterSelectElements.forEach((element) => element.value = TypeHousing.ANY);
 
-  const inputhousingFeaturesElements = housingFeaturesElement.querySelectorAll('input');
-  inputhousingFeaturesElements.forEach((element) => element.checked = false);
+  const inputHousingFeaturesElements = housingFeaturesElement.querySelectorAll('input');
+  inputHousingFeaturesElements.forEach((element) => element.checked = false);
 };
 
 const modifyPins = (pin, formData, maxNumberPin) => {
@@ -57,7 +57,7 @@ const modifyPins = (pin, formData, maxNumberPin) => {
 
       switch(nameField) {
         case FieldFormFilter.TYPE:
-          if (pinData.offer[nameField], pinData.offer[nameField] != field[1]) {
+          if (pinData.offer[nameField], pinData.offer[nameField] !== field[1]) {
             return false;
           }
           break;

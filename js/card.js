@@ -1,4 +1,6 @@
-import {Type} from './const.js';
+import {
+  TypeHousing
+} from './const.js';
 
 const createCardElement = (data) => {
   const {author, offer} = data;
@@ -25,16 +27,16 @@ const createCardElement = (data) => {
     cardElement.querySelector('.popup__text--price').classList.add('visually-hidden');
 
   switch (offer.type) {
-    case Type.FLAT:
+    case TypeHousing.FLAT:
       cardElement.querySelector('.popup__type').textContent = 'Квартира';
       break;
-    case Type.HOUSE:
+    case TypeHousing.HOUSE:
       cardElement.querySelector('.popup__type').textContent = 'Дом';
       break;
-    case Type.PALACE:
+    case TypeHousing.PALACE:
       cardElement.querySelector('.popup__type').textContent = 'Дворец';
       break;
-    case Type.BUNGALOW:
+    case TypeHousing.BUNGALOW:
       cardElement.querySelector('.popup__type').textContent = 'Бунгало';
       break;
     default:

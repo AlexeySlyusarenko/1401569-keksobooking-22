@@ -1,4 +1,5 @@
 import {
+  NUMBER_SHOW_PIN,
   DefaultCoord,
   MainPinIconSize
 } from './const.js';
@@ -99,12 +100,17 @@ const createMarker = (dataCard) => {
   pins.push(pin);
 };
 
-const createMarkers = (dataCards) => {
-  dataCards.forEach((value) => {
-    createMarker(value);
-  });
-};
+const createMarkers = (dataCards = []) => {
+  if(!dataCards.length) {
+    return;
+  }
 
+  const numberPin = dataCards.length > NUMBER_SHOW_PIN ? NUMBER_SHOW_PIN : dataCards.length;
+  
+  for (let i = 0; i < numberPin; i++) {
+    createMarker(dataCards[i]);
+  }
+};
 
 const removeMarkers = () => {
   pins.forEach((element) => {

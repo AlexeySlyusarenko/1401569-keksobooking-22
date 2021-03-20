@@ -1,5 +1,5 @@
 import {
-  Type,
+  TypeHousing,
   TypePrice,
   NumberRoom,
   CapacityRoom,
@@ -57,16 +57,16 @@ let minPrice;
 
 const chooseMinPrice = (value) => {
   switch (value) {
-    case Type.BUNGALOW:
+    case TypeHousing.BUNGALOW:
       setMinPrice(formPriceElement, TypePrice.BUNGALOW);
       break;
-    case Type.FLAT:
+    case TypeHousing.FLAT:
       setMinPrice(formPriceElement, TypePrice.FLAT);
       break;
-    case Type.HOUSE:
+    case TypeHousing.HOUSE:
       setMinPrice(formPriceElement, TypePrice.HOUSE);
       break;
-    case Type.PALACE:
+    case TypeHousing.PALACE:
       setMinPrice(formPriceElement, TypePrice.PALACE);
       break;
   }
@@ -127,7 +127,7 @@ const setValueAddressInput = (value) => {
 
 const resetForm = () => {
   formTitleElement.value = DefaultForm.TITLE;
-  formTypeElement.value = Type.FLAT;
+  formTypeElement.value = TypeHousing.FLAT;
   formPriceElement.value = DefaultForm.PRICE;
   chooseMinPrice(formTypeElement.value);
   formTimeinElement.value = DefaultForm.TIME_IN;

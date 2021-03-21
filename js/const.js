@@ -1,5 +1,5 @@
 const NUMBER_SHOW_PIN = 10;
-
+const DELAY_SHOW_PIN = 500;
 const TYPE_ANY = 'any';
 
 const FieldFormFilter = {
@@ -23,6 +23,17 @@ const TypePrice = {
   FLAT: 1000,
   HOUSE: 5000,
   BUNGALOW: 0,
+  MIDDLE: 'middle',
+  LOW: 'low',
+  HIGH: 'high',
+  LOW_PRICE: 10000,
+  HIGH_PRICE: 50000,
+};
+
+const TypeGuests = {
+  TWO: '2', 
+  ONE: '1',
+  NOT_FOR_GUESTS: '0',
 };
 
 const DefaultCoord = {
@@ -69,10 +80,12 @@ const DefaultForm = {
 
 export {
   NUMBER_SHOW_PIN,
+  DELAY_SHOW_PIN,
   TYPE_ANY,
   FieldFormFilter,
   TypeHousing,
   TypePrice,
+  TypeGuests,
   DefaultCoord,
   MainPinIconSize,
   Form,

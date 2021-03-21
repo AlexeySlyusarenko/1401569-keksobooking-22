@@ -1,5 +1,8 @@
+/* global _:readonly */
+
 import {
   NUMBER_SHOW_PIN,
+  DELAY_SHOW_PIN,
   DefaultCoord,
   MainPinIconSize
 } from './const.js';
@@ -100,24 +103,24 @@ const createMarker = (dataCard) => {
   pins.push(pin);
 };
 
-const createMarkers = (dataCards = []) => {
+const createMarkers = _.debounce((dataCards = []) => {
   if(!dataCards.length) {
     return;
   }
 
   const numberPin = dataCards.length > NUMBER_SHOW_PIN ? NUMBER_SHOW_PIN : dataCards.length;
-  
+
   for (let i = 0; i < numberPin; i++) {
     createMarker(dataCards[i]);
   }
-};
+}, DELAY_SHOW_PIN);
 
-const removeMarkers = () => {
+const removeMarkers = _.debounce(() => {
   pins.forEach((element) => {
     element.remove();
   });
   pins = [];
-};
+}, DELAY_SHOW_PIN);
 
 export {
   createMap,

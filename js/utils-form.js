@@ -43,11 +43,7 @@ const checkTypeField = (elementForm, pinData) => {
 
   const field = getField(element);
 
-  if (pinData.offer[field.name] === field.value) {
-    return true;
-  }
-
-  return false;
+  return pinData.offer[field.name] === field.value;
 };
 
 const checkPriceField = (elementForm, pinData) => {
@@ -91,12 +87,8 @@ const checkRoomsField = (elementForm, pinData) => {
   }
 
   const field = getField(element);
-  
-  if (pinData.offer[field.name].toString() === field.value) {
-    return true;
-  }
 
-  return false;
+  return pinData.offer[field.name].toString() === field.value;
 };
 
 const checkGuestsField = (elementForm, pinData) => {
@@ -108,24 +100,14 @@ const checkGuestsField = (elementForm, pinData) => {
 
   const field = getField(element);
 
-  if (pinData.offer[field.name].toString() === field.value) {
-    return true;
-  }
-
-  return false;
+  return pinData.offer[field.name].toString() === field.value;
 };
 
 const checkField = (formElement, data) => {
-  if(
-    checkTypeField(formElement, data) &&
+  return checkTypeField(formElement, data) &&
     checkPriceField(formElement, data) &&
     checkRoomsField(formElement, data) &&
-    checkGuestsField(formElement, data)
-  ) {
-    return true;
-  }
-  
-  return false;
+    checkGuestsField(formElement, data);
 };
 
 export {

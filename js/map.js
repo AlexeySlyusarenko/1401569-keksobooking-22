@@ -20,6 +20,18 @@ import {
   createCardElement
 } from './card.js';
 
+import {
+  getData
+} from './net.js';
+
+import {
+  showFaultLoadPopup
+} from './popup.js';
+
+import {
+  setCards
+} from './data.js';
+
 const L = window['L'];
 const map = L.map('map-canvas', {
   scrollWheelZoom: false,
@@ -30,8 +42,12 @@ let pins = [];
 const createMap = () => {
   map
     .on('load', () => {
-      enableMapFilter();
-      enableAdForm();
+      getData((cards) => {
+        createMarkers(cards);
+        setCards(cards);
+        enableMapFilter();
+        enableAdForm();
+      }, showFaultLoadPopup);
     })
     .setView({
       lat: DefaultCoord.LAT,

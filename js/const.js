@@ -2,14 +2,6 @@ const NUMBER_SHOW_PIN = 10;
 const DELAY_SHOW_PIN = 500;
 const TYPE_ANY = 'any';
 
-const FieldFormFilter = {
-  TYPE: 'type',
-  PRICE: 'price',
-  ROOMS: 'rooms',
-  GUESTS: 'guests',
-  FEATURES: 'features',
-};
-
 const TypeHousing = {
   ANY: 'any',
   PALACE: 'palace', 
@@ -30,12 +22,6 @@ const TypePrice = {
   HIGH_PRICE: 50000,
 };
 
-const TypeGuests = {
-  TWO: '2', 
-  ONE: '1',
-  NOT_FOR_GUESTS: '0',
-};
-
 const DefaultCoord = {
   LAT: 35.65283,
   LNG: 139.83948,
@@ -44,11 +30,6 @@ const DefaultCoord = {
 const MainPinIconSize = {
   WIDTH: 36,
   HEIGHT: 36,
-};
-
-const Form = {
-  MIN_NAME_LENGTH: 30,
-  MAX_NAME_LENGTH: 100,
 };
 
 const NumberRoom = {
@@ -82,13 +63,10 @@ export {
   NUMBER_SHOW_PIN,
   DELAY_SHOW_PIN,
   TYPE_ANY,
-  FieldFormFilter,
   TypeHousing,
   TypePrice,
-  TypeGuests,
   DefaultCoord,
   MainPinIconSize,
-  Form,
   NumberRoom,
   CapacityRoom,
   Message,

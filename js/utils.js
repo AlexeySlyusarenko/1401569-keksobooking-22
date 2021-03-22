@@ -14,11 +14,6 @@ const getRandom = (min = 0, max = min + 1, round = 0) => {
   return + (Math.random() * (max - min) + min).toFixed(round);
 }
 
-const getRandomArray = (array) => {
-  return array.filter(() => getRandom(0, 1));
-}
-
 export {
-  getRandom,
-  getRandomArray
+  getRandom
 }

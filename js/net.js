@@ -16,7 +16,7 @@ const getData = (onSuccess, onFault) => {
         return response.json();
       }
 
-      throw new Error(response.status);
+      throw new Error(`${response.status}`);
     })
     .then((data) => {
       onSuccess(data);
@@ -37,7 +37,7 @@ const sendData = (body, onSuccess, onFault) => {
         return response.json();
       }
 
-      throw new Error(response.status);
+      throw new Error(`${response.status}`);
     })
     .then((json) => {
       onSuccess(json);

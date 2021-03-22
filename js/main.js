@@ -7,7 +7,7 @@ import {
 } from './map-filter.js';
 
 import {
-  createMap,
+  createMap
 } from './map.js';
 
 initForm();

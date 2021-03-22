@@ -7,31 +7,13 @@ import {
 } from './map-filter.js';
 
 import {
-  createMap,
-  createMarkers
+  createMap
 } from './map.js';
-
-import {
-  getData
-} from './net.js';
-
-import {
-  showFaultLoadPopup
-} from './popup.js';
-
-import {
-  setCards
-} from './data.js';
 
 initForm();
 initFilter();
 
 createMap();
-
-getData((cards) => {
-  createMarkers(cards);
-  setCards(cards);
-}, showFaultLoadPopup);
 
 document.addEventListener('keydown', (evt) => {
   const mainElement = document.querySelector('main');

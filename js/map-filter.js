@@ -1,13 +1,12 @@
 import {
   NUMBER_SHOW_PIN,
-  TYPE_ANY,
-  FieldFormFilter,
   TypeHousing
 } from './const.js';
 
 import {
   disableForm,
-  enableForm
+  enableForm,
+  checkField
 } from './utils-form.js';
 
 import {
@@ -38,41 +37,53 @@ const resetFilter = () => {
   inputHousingFeaturesElements.forEach((element) => element.checked = false);
 };
 
-const modifyPins = (pin, formData, maxNumberPin) => {
-  let i = 1;
-
-  return pin.filter((pinData) => {
-    if (i > maxNumberPin) {
-      return false;
+const getPinsBySelect = (pin) => {
+  return pin.filter((pinData) => {    
+    if(checkField(mapFilterElement, pinData)) {
+      return true;
     }
 
-    i++;
-    
-    for (const field of formData.entries()) {
-      const nameField = field[0].split('-')[1] || field[0].split('-')[0];
+    return false;
+  });
+};
 
-      if(field[1] === TYPE_ANY) {
-        return true;
-      }
+const getPinsByFeatures = (elementForm, pins = []) => {
+  const featuresElement = elementForm.querySelector('#housing-features');
+  const inputElements = featuresElement.querySelectorAll('input');
+  const features = [];
 
-      switch(nameField) {
-        case FieldFormFilter.TYPE:
-          if (pinData.offer[nameField], pinData.offer[nameField] !== field[1]) {
-            return false;
-          }
-          break;
+  for (const element of inputElements) {
+    if(element.checked) {
+      features.push(element.value);
+    }
+  }
+
+  if(!features.length) {
+    return pins;
+  }
+
+  return pins.filter((pin) => {
+    for (const element of features) {
+      if (!pin.offer.features.includes(element)) {
+        return false;
       }
     }
 
     return true;
   });
-};
+}
 
 const setFilterHandlers = () => {
   mapFilterElement.addEventListener('change', (evt) => {
     evt.preventDefault();
 
-    const pins = modifyPins([...getCards()], new FormData(mapFilterElement), NUMBER_SHOW_PIN);
+    let pins = getPinsBySelect([...getCards()]);
+
+    pins = getPinsByFeatures(mapFilterElement, [...pins]);
+
+    if(pins.length > NUMBER_SHOW_PIN) {
+      pins.slice(0, NUMBER_SHOW_PIN);
+    }
 
     removeMarkers();
     createMarkers(pins);

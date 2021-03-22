@@ -62,23 +62,15 @@ const getPinsByFeatures = (elementForm, pins = []) => {
     return pins;
   }
 
-  pins.forEach((pin) => {
-    pin.featuresWeidth = 0
-
-    features.forEach((feature) => {
-      if(pin.offer.features.includes(feature)) {
-        pin.featuresWeidth++;
+  return pins.filter((pin) => {
+    for (const element of features) {
+      if (!pin.offer.features.includes(element)) {
+        return false;
       }
-    })
-  });
+    }
 
-  return pins
-    .sort((currentPin, previewsPin) => {
-      return previewsPin.featuresWeidth - currentPin.featuresWeidth;
-    })
-    .filter((pin) => {
-      return pin.featuresWeidth;
-    });
+    return true;
+  });
 }
 
 const setFilterHandlers = () => {

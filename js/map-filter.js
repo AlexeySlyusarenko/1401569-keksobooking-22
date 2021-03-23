@@ -37,15 +37,9 @@ const resetFilter = () => {
   inputHousingFeaturesElements.forEach((element) => element.checked = false);
 };
 
-const getPinsBySelect = (pin) => {
-  return pin.filter((pinData) => {    
-    if(checkField(mapFilterElement, pinData)) {
-      return true;
-    }
-
-    return false;
-  });
-};
+const getPinsBySelect = (pin) => (
+  pin.filter((pinData) => checkField(mapFilterElement, pinData))
+);
 
 const getPinsByFeatures = (elementForm, pins = []) => {
   const featuresElement = elementForm.querySelector('#housing-features');

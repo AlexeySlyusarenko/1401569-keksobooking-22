@@ -1,6 +1,8 @@
 const NUMBER_SHOW_PIN = 10;
 const DELAY_SHOW_PIN = 500;
 const TYPE_ANY = 'any';
+const LOGO_AVATAR_DEFAULT_URL = 'img/muffin-grey.svg';
+const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
 
 const TypeHousing = {
   ANY: 'any',
@@ -63,6 +65,8 @@ export {
   NUMBER_SHOW_PIN,
   DELAY_SHOW_PIN,
   TYPE_ANY,
+  LOGO_AVATAR_DEFAULT_URL,
+  FILE_TYPES,
   TypeHousing,
   TypePrice,
   DefaultCoord,

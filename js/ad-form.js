@@ -31,7 +31,9 @@ import {
 } from './map.js';
 
 import {
-  setPreviewImageHandler
+  setPreviewImageHandler,
+  setDefaultAvatarPreview,
+  clearPhotoPreview
 } from './file-input.js';
 
 import {
@@ -203,6 +205,8 @@ const setAdFormHandlers = () => {
     removeMarkers();
     createMarkers(getCards());
     setDefaultPositionMainPin();
+    setDefaultAvatarPreview(formPreviewElement);
+    clearPhotoPreview(formPhotoElement);
   });
 
   setPreviewImageHandler(formFieldElement, formPreviewElement);

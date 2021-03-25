@@ -1,4 +1,7 @@
-const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
+import {
+  LOGO_AVATAR_DEFAULT_URL,
+  FILE_TYPES
+} from './const.js'
 
 const setPreviewImageHandler = (uploadButtomElement, previewElement) => {
   const inputFileElement = uploadButtomElement.querySelector('input') || uploadButtomElement;
@@ -33,6 +36,16 @@ const setPreviewImageHandler = (uploadButtomElement, previewElement) => {
   });
 }
 
+const setDefaultAvatarPreview = (previewElement) => {
+  previewElement.querySelector('img').src = LOGO_AVATAR_DEFAULT_URL;
+};
+
+const clearPhotoPreview = (previewElement) => {
+  previewElement.style.backgroundImage = '';
+};
+
 export {
-  setPreviewImageHandler
+  setPreviewImageHandler,
+  setDefaultAvatarPreview,
+  clearPhotoPreview
 }

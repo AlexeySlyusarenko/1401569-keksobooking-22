@@ -31,6 +31,10 @@ import {
 } from './map.js';
 
 import {
+  setPreviewImageHandler
+} from './file-input.js';
+
+import {
   resetFilter
 } from './map-filter.js';
 
@@ -46,6 +50,10 @@ const formCapacityElement = adFormElement.querySelector('#capacity');
 const formCapacityOptionElements = formCapacityElement.querySelectorAll('option');
 const formFeatureElements = adFormElement.querySelectorAll('.feature__checkbox');
 const formResetElement = adFormElement.querySelector('.ad-form__reset');
+const formFieldElement = adFormElement.querySelector('.ad-form__field');
+const formPreviewElement = adFormElement.querySelector('.ad-form-header__preview');
+const formUploadElement = adFormElement.querySelector('.ad-form__upload');
+const formPhotoElement = adFormElement.querySelector('.ad-form__photo');
 
 const setMinPrice = (element, price) => {
   element.placeholder = price;
@@ -196,6 +204,9 @@ const setAdFormHandlers = () => {
     createMarkers(getCards());
     setDefaultPositionMainPin();
   });
+
+  setPreviewImageHandler(formFieldElement, formPreviewElement);
+  setPreviewImageHandler(formUploadElement, formPhotoElement);
 };
 
 const initForm = () => {

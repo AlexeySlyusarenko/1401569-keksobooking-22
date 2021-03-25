@@ -3,10 +3,10 @@ import {
   TypePrice
 } from './const.js';
 
-const disableForm = (formElement, ...elments) => {
+const disableForm = (formElement, ...elements) => {
   formElement.classList.add('ad-form--disabled');
 
-  elments.forEach((value) => {
+  elements.forEach((value) => {
     formElement
       .querySelectorAll(value)
       .forEach((element) => {
@@ -15,10 +15,10 @@ const disableForm = (formElement, ...elments) => {
   });
 };
 
-const enableForm = (formElement, ...elments) => {
+const enableForm = (formElement, ...elements) => {
   formElement.classList.remove('ad-form--disabled');
 
-  elments.forEach((value) => {
+  elements.forEach((value) => {
     formElement
       .querySelectorAll(value)
       .forEach((element) => {
@@ -103,12 +103,12 @@ const checkGuestsField = (elementForm, pinData) => {
   return pinData.offer[field.name].toString() === field.value;
 };
 
-const checkField = (formElement, data) => {
-  return checkTypeField(formElement, data) &&
-    checkPriceField(formElement, data) &&
-    checkRoomsField(formElement, data) &&
-    checkGuestsField(formElement, data);
-};
+const checkField = (formElement, data) => (
+  checkTypeField(formElement, data) &&
+  checkPriceField(formElement, data) &&
+  checkRoomsField(formElement, data) &&
+  checkGuestsField(formElement, data)
+);
 
 export {
   disableForm,
